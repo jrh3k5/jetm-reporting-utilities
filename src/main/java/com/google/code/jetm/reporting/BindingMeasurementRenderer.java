@@ -1,8 +1,7 @@
 package com.google.code.jetm.reporting;
 
+import java.io.Writer;
 import java.util.Map;
-
-import com.google.code.jetm.reporting.xml.AggregateBinder;
 
 import etm.core.renderer.MeasurementRenderer;
 
@@ -13,24 +12,21 @@ import etm.core.renderer.MeasurementRenderer;
  * 
  */
 
-public class XmlMeasurementRenderer implements MeasurementRenderer {
+public class BindingMeasurementRenderer implements MeasurementRenderer {
     private final AggregateBinder binder;
-
-    /**
-     * Create a renderer.
-     */
-    public XmlMeasurementRenderer() {
-        this(new AggregateBinder());
-    }
+    private final Writer writer;
 
     /**
      * Create a renderer using the given aggregate binder.
      * 
      * @param binder
      *            The {@link AggregateBinder} to be used.
+     * @param writer
+     *            The {@link Writer} to which the report data will be written.
      */
-    public XmlMeasurementRenderer(AggregateBinder binder) {
+    public BindingMeasurementRenderer(AggregateBinder binder, Writer writer) {
         this.binder = binder;
+        this.writer = writer;
     }
 
     /**
@@ -38,7 +34,6 @@ public class XmlMeasurementRenderer implements MeasurementRenderer {
      */
     @SuppressWarnings("unchecked")
     public void render(@SuppressWarnings("rawtypes") Map points) {
-        binder.marshall(points.values());
+        binder.bind(points.values(), writer);
     }
-
 }

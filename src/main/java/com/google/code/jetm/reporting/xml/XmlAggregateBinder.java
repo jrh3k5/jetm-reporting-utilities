@@ -1,7 +1,8 @@
 package com.google.code.jetm.reporting.xml;
 
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,9 +10,12 @@ import java.util.List;
 import org.jdom.CDATA;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
+
+import com.google.code.jetm.reporting.AggregateBinder;
 
 import etm.core.aggregation.Aggregate;
 
@@ -22,52 +26,43 @@ import etm.core.aggregation.Aggregate;
  * 
  */
 
-public class AggregateBinder {
+public class XmlAggregateBinder implements AggregateBinder {
     private final Namespace jetmNamespace = Namespace
             .getNamespace("http://code.google.com/p/jetm-reporting-utilities/jetm-measurement");
 
     /**
-     * Marshall a collection of aggregates to XML.
-     * 
-     * @param aggregates
-     *            A {@link Collection} of {@link Aggregate} objects to be
-     *            marshalled.
-     * @return The marshalled XML.
+     * {@inheritDoc}
      */
-    public String marshall(Collection<? extends Aggregate> aggregates) {
-        try {
-            final Element rootElement = new Element("measurements", jetmNamespace);
-            for (Aggregate aggregate : aggregates)
-                rootElement.addContent(toElement(aggregate));
+    public void bind(Collection<? extends Aggregate> aggregates, Writer writer) {
+        final Element rootElement = new Element("measurements", jetmNamespace);
+        for (Aggregate aggregate : aggregates)
+            rootElement.addContent(toElement(aggregate));
 
-            final StringWriter writer = new StringWriter();
+        try {
             new XMLOutputter().output(rootElement, writer);
-            return writer.toString();
-        } catch (Exception e) {
-            throw new RuntimeException("whoops", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to write aggregate data to XML.", e);
         }
     }
 
     /**
-     * Unmarshall XML into a list of aggregate objects.
-     * 
-     * @param xml
-     *            The XML to be unmarshalled.
-     * @return A {@link List} of {@link Aggregate} objects representing the
-     *         unmarshalled XML.
+     * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    public Collection<Aggregate> unmarshall(String xml) {
+    public Collection<Aggregate> unbind(Reader reader) {
+        Document document;
         try {
-            final Document document = new SAXBuilder().build(new StringReader(xml));
-            final List<Aggregate> aggregates = new LinkedList<Aggregate>();
-            for (Element element : (List<Element>) document.getRootElement().getChildren(
-                    "measurement", jetmNamespace))
-                aggregates.add(fromElement(element));
-            return aggregates;
-        } catch (Exception e) {
-            throw new RuntimeException("whoops", e);
+            document = new SAXBuilder().build(reader);
+        } catch (JDOMException e) {
+            throw new RuntimeException("Failed to read XML data from reader.", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read XML data from reader.", e);
         }
+        final List<Aggregate> aggregates = new LinkedList<Aggregate>();
+        for (Element element : (List<Element>) document.getRootElement().getChildren("measurement",
+                jetmNamespace))
+            aggregates.add(fromElement(element));
+        return aggregates;
     }
 
     /**
