@@ -20,6 +20,22 @@ public class XmlAggregate implements Aggregate {
     private final long measurements;
     private final String name;
 
+    /**
+     * Create an aggregate.
+     * 
+     * @param min
+     *            The minimum amount of time that occurred within a measurement
+     *            collection.
+     * @param max
+     *            The maximum amount of time that occurred within a measurement
+     *            collection.
+     * @param total
+     *            The total amount of time collected.
+     * @param measurements
+     *            The number of times the measurement was collected.
+     * @param name
+     *            The name of the measurement.
+     */
     public XmlAggregate(double min, double max, double total, long measurements, String name) {
         this.min = min;
         this.max = max;
