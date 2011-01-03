@@ -4,6 +4,8 @@ import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -12,14 +14,14 @@ import org.junit.Test;
 import etm.core.aggregation.Aggregate;
 
 /**
- * Unit tests for {@link AggregateBinder}.
+ * Unit tests for {@link XmlAggregateBinderTest}.
  * 
  * @author jrh3k5
  * 
  */
 
-public class AggregateBinderTest {
-    private final AggregateBinder binder = new AggregateBinder();
+public class XmlAggregateBinderTest {
+    private final XmlAggregateBinder binder = new XmlAggregateBinder();
 
     /**
      * Test the marshalling of an aggregate to XML.
@@ -42,10 +44,12 @@ public class AggregateBinderTest {
         when(aggregate.getMeasurements()).thenReturn(measurements);
         when(aggregate.getName()).thenReturn(name);
 
-        final String xml = binder.marshall(Collections.singletonList(aggregate));
+        final StringWriter writer = new StringWriter();
+        binder.bind(Collections.singletonList(aggregate), writer);
 
         // Reconstitute it as a bean
-        final Collection<Aggregate> unmarshalledList = binder.unmarshall(xml);
+        final StringReader reader = new StringReader(writer.toString());
+        final Collection<Aggregate> unmarshalledList = binder.unbind(reader);
         assertThat(unmarshalledList).hasSize(1);
         final Aggregate unmarshalled = unmarshalledList.iterator().next();
         assertThat(unmarshalled.getMax()).isEqualTo(max);
