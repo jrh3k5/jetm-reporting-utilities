@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://code.google.com/p/jetm-reporting-utilities/jetm-measurement" xmlns:jetm="http://code.google.com/p/jetm-reporting-utilities/jetm-measurement"
+    elementFormDefault="qualified">
+    <xsd:complexType name="measurement" xmlns="jetm">
+        <xsd:sequence>
+            <xsd:element name="measurementName" type="xsd:string" />
+            <xsd:element name="min" type="xsd:decimal" />
+            <xsd:element name="max" type="xsd:decimal" />
+            <xsd:element name="total" type="xsd:decimal" />
+            <!-- The number of executions of the measurement point -->
+            <xsd:element name="measurements" type="xsd:long" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="measurements">
+        <xsd:complexType>
+            <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+                <xsd:element name="measurement" type="jetm:measurement" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
