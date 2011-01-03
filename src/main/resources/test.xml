@@ -1,9 +1,0 @@
-<measurements xmlns="http://code.google.com/p/jetm-reporting-utilities/jetm-measurement">
-    <measurement>
-        <measurementName><![CDATA[measurement-name]]></measurementName>
-        <min>1.0</min>
-        <max>2.0</max>
-        <total>4.0</total>
-        <measurements>1500</measurements>
-    </measurement>
-</measurements>

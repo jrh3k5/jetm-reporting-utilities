@@ -4,8 +4,8 @@ import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -45,9 +45,9 @@ public class AggregateBinderTest {
         final String xml = binder.marshall(Collections.singletonList(aggregate));
 
         // Reconstitute it as a bean
-        final List<Aggregate> unmarshalledList = binder.unmarshall(xml);
+        final Collection<Aggregate> unmarshalledList = binder.unmarshall(xml);
         assertThat(unmarshalledList).hasSize(1);
-        final Aggregate unmarshalled = unmarshalledList.get(0);
+        final Aggregate unmarshalled = unmarshalledList.iterator().next();
         assertThat(unmarshalled.getMax()).isEqualTo(max);
         assertThat(unmarshalled.getMin()).isEqualTo(min);
         assertThat(unmarshalled.getTotal()).isEqualTo(total);

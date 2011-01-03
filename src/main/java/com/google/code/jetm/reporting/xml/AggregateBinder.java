@@ -2,6 +2,7 @@ package com.google.code.jetm.reporting.xml;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class AggregateBinder {
      *            marshalled.
      * @return The marshalled XML.
      */
-    public String marshall(List<? extends Aggregate> aggregates) {
+    public String marshall(Collection<? extends Aggregate> aggregates) {
         try {
             final Element rootElement = new Element("measurements", jetmNamespace);
             for (Aggregate aggregate : aggregates)
@@ -56,7 +57,7 @@ public class AggregateBinder {
      *         unmarshalled XML.
      */
     @SuppressWarnings("unchecked")
-    public List<Aggregate> unmarshall(String xml) {
+    public Collection<Aggregate> unmarshall(String xml) {
         try {
             final Document document = new SAXBuilder().build(new StringReader(xml));
             final List<Aggregate> aggregates = new LinkedList<Aggregate>();
