@@ -193,12 +193,12 @@
                 <repository>
                     <id>google-code</id>
                     <name>Google Code Project Repo</name>
-                    <url>https://jetm-maven-plugin.googlecode.com/svn/repo/</url>
+                    <url>svn:https://jetm-maven-plugin.googlecode.com/svn/repo/</url>
                 </repository>
                 <site>
                     <id>google-code</id>
                     <name>Google Code Project Repo</name>
-                    <url>https://jetm-maven-plugin.googlecode.com/svn/site/${project.groupId}/${project.artifactId}/${project.version}/</url>
+                    <url>svn:https://jetm-maven-plugin.googlecode.com/svn/site/${project.groupId}/${project.artifactId}/${project.version}/</url>
                 </site>
             </distributionManagement>
         </profile>
