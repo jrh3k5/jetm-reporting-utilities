@@ -13,9 +13,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <scm>
-        <connection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/trunk</connection>
-        <developerConnection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/trunk</developerConnection>
-        <url>https://jetm-reporting-utilities.googlecode.com/svn/trunk</url>
+        <connection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/trunk/${project.artifactId}</connection>
+        <developerConnection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/trunk/${project.artifactId}</developerConnection>
+        <url>https://jetm-reporting-utilities.googlecode.com/svn/trunk/${project.artifactId}</url>
     </scm>
     <issueManagement>
         <system>Google Code</system>
