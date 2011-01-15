@@ -7,7 +7,7 @@
     </parent>
     <groupId>com.google.code.jetm</groupId>
     <artifactId>jetm-reporting-utilities</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <name>JETM Reporting Utilities</name>
     <description>Reporting utilities for JETM</description>
     <inceptionYear>2011</inceptionYear>
@@ -18,9 +18,9 @@
         <jdk.version>1.5</jdk.version>
     </properties>
     <scm>
-        <connection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/tags/jetm-reporting-utilities-1.0</connection>
-        <developerConnection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/tags/jetm-reporting-utilities-1.0</developerConnection>
-        <url>https://jetm-reporting-utilities.googlecode.com/svn/tags/jetm-reporting-utilities-1.0</url>
+        <connection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/trunk/jetm-reporting-utilities</connection>
+        <developerConnection>scm:svn:https://jetm-reporting-utilities.googlecode.com/svn/trunk/jetm-reporting-utilities</developerConnection>
+        <url>https://jetm-reporting-utilities.googlecode.com/svn/trunk/jetm-reporting-utilities</url>
     </scm>
     <issueManagement>
         <system>Google Code</system>
