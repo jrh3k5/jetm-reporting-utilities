@@ -1,0 +1,12 @@
+                                    ------
+                                    FAQ
+                                    ------
+                                    Joshua Hyde
+                                    ------
+                                     2011-01-14
+
+FAQ
+
+* How Do I Generate an XML Report?
+
+  Refer to {{{./xref-test/com/google/code/jetm/reporting/BindingMeasurementRendererITest.html}BindingMeasurementRendererITest}} for an example of how to use the XML aggregation binder.
