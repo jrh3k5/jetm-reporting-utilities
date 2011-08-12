@@ -1,0 +1,14 @@
+<document xmlns="changes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="changes http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
+    <properties>
+        <author>jrh3k5</author>
+    </properties>
+    <body>
+        <release version="1.0.1" date="2011-08-11">
+            <action dev="jrh3k5" type="add" issue="1" system="GoogleCode">
+                Add a point factory.
+            </action>
+        </release>
+        <release date="2011-02-07" version="1.0" description="Initial GA Release" />
+    </body>
+</document>
