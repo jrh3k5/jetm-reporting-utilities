@@ -6,9 +6,9 @@ import org.junit.Test;
 
 /**
  * Unit tests for {@link XmlAggregate}.
- * 
+ *
  * @author jrh3k5
- * 
+ *
  */
 
 public class XmlAggregateTest {
@@ -20,7 +20,7 @@ public class XmlAggregateTest {
         final long measurements = 32;
         final double total = 23.0;
         final XmlAggregate aggregate = new XmlAggregate(0, 0, total, measurements, "test");
-        assertThat(aggregate.getAverage()).isEqualTo(total / (double) measurements);
+        assertThat(aggregate.getAverage()).isEqualTo(total / measurements);
     }
 
     /**

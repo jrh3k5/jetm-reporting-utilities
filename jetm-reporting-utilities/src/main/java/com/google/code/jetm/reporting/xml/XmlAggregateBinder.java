@@ -7,13 +7,13 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jdom.CDATA;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.Namespace;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.CDATA;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.Namespace;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.XMLOutputter;
 
 import com.google.code.jetm.reporting.AggregateBinder;
 
@@ -21,9 +21,9 @@ import etm.core.aggregation.Aggregate;
 
 /**
  * A binder to bind an {@link Aggregate} object to XML and back again.
- * 
+ *
  * @author jrh3k5
- * 
+ *
  */
 
 public class XmlAggregateBinder implements AggregateBinder {
@@ -48,7 +48,6 @@ public class XmlAggregateBinder implements AggregateBinder {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
     public Collection<Aggregate> unbind(Reader reader) {
         Document document;
         try {
@@ -59,7 +58,7 @@ public class XmlAggregateBinder implements AggregateBinder {
             throw new RuntimeException("Failed to read XML data from reader.", e);
         }
         final List<Aggregate> aggregates = new LinkedList<Aggregate>();
-        for (Element element : (List<Element>) document.getRootElement().getChildren("measurement",
+        for (Element element : document.getRootElement().getChildren("measurement",
                 jetmNamespace))
             aggregates.add(fromElement(element));
         return aggregates;
@@ -67,7 +66,7 @@ public class XmlAggregateBinder implements AggregateBinder {
 
     /**
      * Turn a {@code <measurement />} XML element into an aggregate.
-     * 
+     *
      * @param element
      *            An {@link Element} representing the XML to be converted.
      * @return An {@link Aggregate} built out of the given XML.
@@ -85,7 +84,7 @@ public class XmlAggregateBinder implements AggregateBinder {
 
     /**
      * Convert an aggregate to an XML element.
-     * 
+     *
      * @param aggregate
      *            The {@link Aggregate} to be converted into XML.
      * @return An {@link Element} representing the XML built out of the given

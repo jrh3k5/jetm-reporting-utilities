@@ -8,9 +8,9 @@ import etm.core.aggregation.Aggregate;
 /**
  * An implementation of {@link Aggregate} to be used to marshal and unmarshal to
  * and from XML.
- * 
+ *
  * @author jrh3k5
- * 
+ *
  */
 
 public class XmlAggregate implements Aggregate {
@@ -22,7 +22,7 @@ public class XmlAggregate implements Aggregate {
 
     /**
      * Create an aggregate.
-     * 
+     *
      * @param min
      *            The minimum amount of time that occurred within a measurement
      *            collection.
@@ -48,7 +48,7 @@ public class XmlAggregate implements Aggregate {
      * {@inheritDoc}
      */
     public double getAverage() {
-        return measurements == 0 ? 0 : total / (double) measurements;
+        return measurements == 0 ? 0 : total / measurements;
     }
 
     /**
